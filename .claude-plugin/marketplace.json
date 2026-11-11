@@ -1,0 +1,13 @@
+{
+    "name": "azure-dr-assessment-marketplace",
+    "owner": {
+        "name": "zenosoftorg"
+    },
+    "plugins": [
+        {
+            "name": "azure-dr-assessment",
+            "source": "./",
+            "description": "Rebuild an Azure workload's architecture from an Azure Resource Inventory (ARI) export or a read-only live query, then design and walk through its disaster recovery for a chosen region pair and DR tier."
+        }
+    ]
+}

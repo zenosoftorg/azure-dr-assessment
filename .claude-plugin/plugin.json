@@ -1,0 +1,11 @@
+{
+    "name": "azure-dr-assessment",
+    "description": "Rebuild an Azure workload's architecture from an Azure Resource Inventory (ARI) export or a read-only live query, then design and walk through its disaster recovery for a chosen region pair and DR tier. Company patterns take precedence over Microsoft Learn guidance.",
+    "version": "3.0.0",
+    "author": {
+        "name": "zenosoftorg"
+    },
+    "homepage": "https://github.com/zenosoftorg/azure-dr-assessment",
+    "repository": "https://github.com/zenosoftorg/azure-dr-assessment",
+    "keywords": ["azure", "disaster-recovery", "dr", "architecture", "ari", "resilience", "skills"]
+}

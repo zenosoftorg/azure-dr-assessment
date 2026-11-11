@@ -1,0 +1,5 @@
+# Company patterns are design rules that application teams cannot change. Every change needs the owner's review.
+/skills/azure-dr-assessment/patterns/ @Zenocolo
+
+# The controls that protect them: CI, this file and the other workflow files.
+/.github/ @Zenocolo

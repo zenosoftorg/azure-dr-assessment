@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "title": "checkout · current state (westeurope)",
+  "nodes": [
+    {
+      "id": "n_front-door",
+      "iconId": "azure:front-door-and-cdn-profiles",
+      "variant": 0,
+      "label": "Front Door",
+      "sublabel": "Premium",
+      "x": 0,
+      "y": 242,
+      "group": null,
+      "annotation": "**Evidence:** F-0004\n\n**Strength:** Observed"
+    },
+    {
+      "id": "n_web",
+      "iconId": "azure:app-services",
+      "variant": 0,
+      "label": "web-prod",
+      "sublabel": "App Service · P1v3",
+      "x": 234,
+      "y": 185,
+      "group": "g_primary",
+      "annotation": "**Evidence:** F-0001\n\n**Strength:** Observed"
+    },
+    {
+      "id": "n_db",
+      "iconId": "azure:sql-database",
+      "variant": 0,
+      "label": "orders-db",
+      "sublabel": "SQL Database · S3",
+      "x": 468,
+      "y": 272,
+      "group": "g_data",
+      "annotation": "**Evidence:** F-0002\n\n**Strength:** Observed"
+    },
+    {
+      "id": "n_assets",
+      "iconId": "azure:storage-accounts",
+      "variant": 0,
+      "label": "assets-prod",
+      "sublabel": "Storage · Standard_LRS",
+      "x": 468,
+      "y": 416,
+      "group": "g_data",
+      "annotation": "**Evidence:** F-0003\n\n**Strength:** Observed"
+    },
+    {
+      "id": "n_vault",
+      "iconId": "azure:key-vaults",
+      "variant": 0,
+      "label": "kv-prod",
+      "sublabel": "Key Vault",
+      "x": 234,
+      "y": 329,
+      "group": "g_primary",
+      "annotation": "**Evidence:** F-0005\n\n**Strength:** Observed"
+    },
+    {
+      "id": "n_queue",
+      "iconId": "azure:all-resources",
+      "variant": 0,
+      "label": "orders-queue",
+      "sublabel": "Standard",
+      "x": 468,
+      "y": 64,
+      "group": "g_primary",
+      "annotation": "**Evidence:** F-0008\n\n**Strength:** Observed\n\n_Generic icon: no specific icon for microsoft.contoso/widgets._\n\nA note written by the model."
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_front-door_web_0",
+      "from": "n_front-door",
+      "to": "n_web",
+      "label": "HTTPS",
+      "color": "#0969da",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0004\n\n**Strength:** Observed"
+    },
+    {
+      "id": "e_front-door_web_1",
+      "from": "n_front-door",
+      "to": "n_web",
+      "label": "Health probe",
+      "color": "#0969da",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0004\n\n**Strength:** Observed"
+    },
+    {
+      "id": "e_web_db_0",
+      "from": "n_web",
+      "to": "n_db",
+      "label": "SQL",
+      "color": "#f59e0b",
+      "dashed": true,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0006\n\n**Strength:** Inferred\n\n**Basis:** connection string name matches"
+    },
+    {
+      "id": "e_web_assets_0",
+      "from": "n_web",
+      "to": "n_assets",
+      "label": "Blob",
+      "color": "#f59e0b",
+      "dashed": true,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0007\n\n**Strength:** Inferred\n\n**Basis:** owner statement"
+    },
+    {
+      "id": "e_web_queue_0",
+      "from": "n_web",
+      "to": "n_queue",
+      "label": "Orders",
+      "color": "#f59e0b",
+      "dashed": true,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0010\n\n**Strength:** Inferred\n\n**Basis:** owner statement"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g_primary",
+      "label": "Primary · westeurope",
+      "parent": null,
+      "x": 200,
+      "y": 30,
+      "width": 440,
+      "height": 538,
+      "padding": 34,
+      "border": "#0969da",
+      "background": "rgba(9,105,218,0.08)",
+      "dashed": false,
+      "annotation": "**Evidence:** F-0001\n\nRegion read from the App Service row."
+    },
+    {
+      "id": "g_data",
+      "label": "Data services",
+      "parent": "g_primary",
+      "x": 434,
+      "y": 238,
+      "width": 172,
+      "height": 296,
+      "padding": 34,
+      "border": "#8c959f",
+      "background": "rgba(140,149,159,0.08)",
+      "dashed": true,
+      "annotation": ""
+    }
+  ],
+  "decisions": [],
+  "view": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "updatedAt": "2026-01-01T00:00:00.000Z"
+}

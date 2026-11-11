@@ -1,0 +1,57 @@
+# Copy to dr-assessment/<app>/assessment.yaml, or let intake create it.
+# Unknown values stay null. Never guess. A rerun is one line:
+#   Use /azure-dr-assessment with dr-assessment/checkout/assessment.yaml
+schema: 1
+workload:
+  name: checkout
+  app: checkout                    # slug of the name; written by intake
+  environment: production
+  owner_role: null                 # a role or team, not a person's contact details
+inputs:
+  ari_file: ari-export.xlsx        # relative to the folder you run from; null when live
+  live:
+    tenant_id: null                # set only when live read-only collection is requested
+    subscription_ids: []
+scope:                             # only needed when the inventory holds more than one workload
+  resource_groups: []              # every selector that is set must match
+  tag: null                        # or a block mapping with the keys name and value, for example:
+                                   #   tag:
+                                   #     name: app
+                                   #     value: checkout
+  subscriptions: []
+regions:
+  primary: westeurope              # Azure region names, for example westeurope
+  dr: swedencentral                # need not be the paired region
+  failure_scope: regional          # zonal | regional | wider
+objectives:
+  tier: 1                          # 0 to 3; set only when the owner explicitly chose it
+  rto: null                        # a number plus s, m, h or d, for example 30m
+  rpo: null
+  exceptions: []                   # a block sequence; each item has the keys what, approver_role and date, when a target is stricter than the tier
+constraints:
+  data_residency: null
+  cost_ceiling: null
+  test_windows: null
+pattern_inputs: {}                 # values a pattern asks the application team for, a block mapping per pattern id, for example:
+                                   #   pattern_inputs:
+                                   #     DR-DNS-001:
+                                   #       record_type: A
+                                   #       ttl: 300
+                                   # (the values only show the shape; never guess one)
+overrides: []                      # documented exceptions to company patterns
+# overrides:
+#   - pattern: DR-DNS-001          # the pattern's override level decides which fields are required
+#     slots: [traffic-dns]         # optional; default is every slot the pattern decides
+#     justification: Internet-facing only; no on-prem DNS dependency
+#     owner_role: Application owner
+#     date: 2026-11-04
+#     approver_role: Platform architecture board    # approval-required patterns only
+#     approval_ref: ARB-2026-114                    # approval-required patterns only
+#     alternative: Azure Front Door with health probes
+decisions: []                      # recorded answers, a block sequence; each item has the keys question, answer, by and date
+dr_choices: []                     # the DR option chosen per service, written by dr-options --record; a block sequence; each item has the keys type, option, chosen_by (a role, or default), date and recommended
+drills: []                         # a block sequence; each item has the keys date, scenario, rpo, rto and reference; the only source of Demonstrated times
+options:
+  pause_after_current_state: false
+outputs:
+  directory: dr-assessment/checkout

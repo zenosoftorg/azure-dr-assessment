@@ -1,0 +1,17 @@
+# Customer assessment data must never be committed to this repository
+/assessment.yaml
+/patterns/
+/inputs/
+/evidence/
+/reports/
+/architectures/
+*.xlsx
+*.xls
+.env
+.DS_Store
+
+# v2 outputs, icon cache and tooling
+/dr-assessment/
+Final SVG Icons/
+node_modules/
+/tests/.tmp/

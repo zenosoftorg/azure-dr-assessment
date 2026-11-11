@@ -1,0 +1,22 @@
+name: online-checks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  online:
+    runs-on: ubuntu-latest
+    env:
+      DR_ONLINE_TESTS: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Run the tests that need the network
+        run: node --test tests/e2e/foundation-online.test.mjs tests/e2e/learn-map-online.test.mjs tests/e2e/playbooks-online.test.mjs

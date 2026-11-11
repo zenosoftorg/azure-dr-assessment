@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "kind": "current-state",
+  "id": "checkout-current-state",
+  "title": "checkout · current state (westeurope)",
+  "direction": "LR",
+  "groups": [
+    { "key": "primary", "label": "Primary · westeurope", "parent": null, "style": "primary", "evidence": ["F-0001"], "annotation": "Region read from the App Service row." },
+    { "key": "data", "label": "Data services", "parent": "primary", "style": "neutral", "evidence": [], "annotation": "" }
+  ],
+  "nodes": [
+    { "key": "front-door", "label": "Front Door", "sublabel": "Premium", "armType": "microsoft.network/frontdoors", "icon": null, "group": null, "evidence": ["F-0004"], "decisions": [], "annotation": "" },
+    { "key": "web", "label": "web-prod", "sublabel": "App Service · P1v3", "armType": "microsoft.web/sites", "icon": null, "group": "primary", "evidence": ["F-0001"], "decisions": [], "annotation": "" },
+    { "key": "db", "label": "orders-db", "sublabel": "SQL Database · S3", "armType": "microsoft.sql/servers/databases", "icon": null, "group": "data", "evidence": ["F-0002"], "decisions": [], "annotation": "" },
+    { "key": "assets", "label": "assets-prod", "sublabel": "Storage · Standard_LRS", "armType": "microsoft.storage/storageaccounts", "icon": null, "group": "data", "evidence": ["F-0003"], "decisions": [], "annotation": "" },
+    { "key": "vault", "label": "kv-prod", "sublabel": "Key Vault", "armType": "microsoft.keyvault/vaults", "icon": null, "group": "primary", "evidence": ["F-0005"], "decisions": [], "annotation": "" },
+    { "key": "queue", "label": "orders-queue", "sublabel": "Standard", "armType": "microsoft.contoso/widgets", "icon": null, "group": "primary", "evidence": ["F-0008"], "decisions": [], "annotation": "A note written by the model." }
+  ],
+  "edges": [
+    { "from": "front-door", "to": "web", "label": "HTTPS", "kind": "observed", "basis": "", "evidence": ["F-0004"], "mechanism": null, "arrow": "forward", "annotation": "" },
+    { "from": "front-door", "to": "web", "label": "Health probe", "kind": "observed", "basis": "", "evidence": ["F-0004"], "mechanism": null, "arrow": "forward", "annotation": "" },
+    { "from": "web", "to": "db", "label": "SQL", "kind": "inferred", "basis": "connection string name matches", "evidence": ["F-0006"], "mechanism": null, "arrow": "forward", "annotation": "" },
+    { "from": "web", "to": "assets", "label": "Blob", "kind": "inferred", "basis": "owner statement", "evidence": ["F-0007"], "mechanism": null, "arrow": "forward", "annotation": "" },
+    { "from": "web", "to": "queue", "label": "Orders", "kind": "inferred", "basis": "owner statement", "evidence": ["F-0010"], "mechanism": null, "arrow": "forward", "annotation": "" }
+  ]
+}

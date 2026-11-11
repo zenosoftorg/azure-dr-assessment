@@ -1,0 +1,6 @@
+text,number,flag,date,datetime,empty,notes
+plain,1,TRUE,2026-11-04,2026-11-04 13:45:00,,first
+"with, comma",-2.5,FALSE,2024-02-29,2024-02-29 00:00:00,,"say ""hi"""
+"tom & jerry <b>",1000000,TRUE,1900-03-01,1999-12-31 23:59:59,,"multi
+line"
+héllo 日本,0.1,FALSE,2038-01-19,2038-01-19 03:14:07,,unicode

@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "title": "checkout · proposed DR (westeurope to swedencentral)",
+  "nodes": [
+    {
+      "id": "n_dns",
+      "iconId": "azure:all-resources",
+      "variant": 0,
+      "label": "On-prem DNS",
+      "sublabel": "authoritative record",
+      "x": 34,
+      "y": 64,
+      "group": "g_onprem",
+      "annotation": "**Slot:** traffic-dns\n\n**Source:** DR-DNS-001 v1\n\n_Generic icon: the node gives neither an ARM type nor an icon._"
+    },
+    {
+      "id": "n_web",
+      "iconId": "azure:app-services",
+      "variant": 0,
+      "label": "web-prod",
+      "sublabel": "App Service · P1v3",
+      "x": 302,
+      "y": 170,
+      "group": "g_primary",
+      "annotation": "**Evidence:** F-0001"
+    },
+    {
+      "id": "n_db",
+      "iconId": "azure:sql-database",
+      "variant": 0,
+      "label": "orders-db",
+      "sublabel": "SQL Database · S3",
+      "x": 502,
+      "y": 170,
+      "group": "g_primary",
+      "annotation": "**Evidence:** F-0002\n\n**Slot:** data-replication.relational\n\n**Source:** Microsoft Learn"
+    },
+    {
+      "id": "n_web-dr",
+      "iconId": "azure:app-services",
+      "variant": 0,
+      "label": "web-dr",
+      "sublabel": "App Service · P1v3 (warm)",
+      "x": 770,
+      "y": 113,
+      "group": "g_dr",
+      "annotation": "**Evidence:** F-0001\n\n**Slot:** compute\n\n**Source:** Microsoft Learn\n\nSame plan and size as the primary."
+    },
+    {
+      "id": "n_db-dr",
+      "iconId": "azure:sql-database",
+      "variant": 0,
+      "label": "orders-db replica",
+      "sublabel": "SQL Database · S3",
+      "x": 970,
+      "y": 185,
+      "group": "g_dr",
+      "annotation": "**Evidence:** R-0001, D-0001\n\n**Slot:** data-replication.relational\n\n**Source:** Microsoft Learn\n\n**Docs:** https://learn.microsoft.com/en-us/azure/reliability/regions-multiregion-support"
+    },
+    {
+      "id": "n_vault-dr",
+      "iconId": "azure:key-vaults",
+      "variant": 0,
+      "label": "kv-dr",
+      "sublabel": "Key Vault · own vault",
+      "x": 770,
+      "y": 257,
+      "group": "g_dr",
+      "annotation": "**Evidence:** R-0002, D-0001, F-0004\n\n**Slot:** secrets-keys\n\n**Source:** Microsoft Learn\n\n**Docs:** https://learn.microsoft.com/en-us/azure/reliability/regions-multiregion-support\n\nSecrets are copied by the release pipeline."
+    },
+    {
+      "id": "n_exception_0",
+      "iconId": "azure:information",
+      "variant": 0,
+      "label": "Exception: DR-TIER-001 objectives",
+      "sublabel": "tier exception",
+      "x": 34,
+      "y": 306,
+      "group": "g_documented_exceptions",
+      "annotation": "**Exception:** RTO 10m stays unmet by tier 1\n\n**Approver role:** CTO\n\n**Date:** 2026-11-04\n\n_This skill records the exception. It cannot verify the approval._"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_dns_web_0",
+      "from": "n_dns",
+      "to": "n_web",
+      "label": "Record to primary",
+      "color": "#1a7f37",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Mechanism:** the on-prem record points to the primary entry point\n\n**Slot:** traffic-dns\n\n**Source:** DR-DNS-001 v1"
+    },
+    {
+      "id": "e_dns_web-dr_0",
+      "from": "n_dns",
+      "to": "n_web-dr",
+      "label": "Change on-prem DNS record",
+      "color": "#cf222e",
+      "dashed": true,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Mechanism:** on-prem record change at failover; the TTL wait counts toward RTO\n\n**Slot:** traffic-dns\n\n**Source:** DR-DNS-001 v1"
+    },
+    {
+      "id": "e_web_db_0",
+      "from": "n_web",
+      "to": "n_db",
+      "label": "SQL",
+      "color": "#57606a",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0003\n\n**Mechanism:** application connection"
+    },
+    {
+      "id": "e_db_db-dr_0",
+      "from": "n_db",
+      "to": "n_db-dr",
+      "label": "Async geo-replication",
+      "color": "#8250df",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** R-0001, D-0001\n\n**Mechanism:** SQL Database active geo-replication\n\n**Slot:** data-replication.relational\n\n**Source:** Microsoft Learn\n\n**Docs:** https://learn.microsoft.com/en-us/azure/reliability/regions-multiregion-support"
+    },
+    {
+      "id": "e_web-dr_db-dr_0",
+      "from": "n_web-dr",
+      "to": "n_db-dr",
+      "label": "SQL after failover",
+      "color": "#57606a",
+      "dashed": false,
+      "width": 2,
+      "arrow": "forward",
+      "route": "straight",
+      "annotation": "**Evidence:** F-0003\n\n**Mechanism:** application connection after failover"
+    }
+  ],
+  "groups": [
+    {
+      "id": "g_onprem",
+      "label": "On-prem",
+      "parent": null,
+      "x": 0,
+      "y": 30,
+      "width": 172,
+      "height": 152,
+      "padding": 34,
+      "border": "#57606a",
+      "background": "rgba(87,96,106,0.08)",
+      "dashed": false,
+      "annotation": "The company DNS is authoritative for the application's names."
+    },
+    {
+      "id": "g_primary",
+      "label": "Primary · westeurope",
+      "parent": null,
+      "x": 268,
+      "y": 136,
+      "width": 372,
+      "height": 152,
+      "padding": 34,
+      "border": "#0969da",
+      "background": "rgba(9,105,218,0.08)",
+      "dashed": false,
+      "annotation": "**Evidence:** F-0001"
+    },
+    {
+      "id": "g_dr",
+      "label": "DR · swedencentral",
+      "parent": null,
+      "x": 736,
+      "y": 79,
+      "width": 372,
+      "height": 296,
+      "padding": 34,
+      "border": "#8250df",
+      "background": "rgba(130,80,223,0.08)",
+      "dashed": false,
+      "annotation": "Not a paired region of westeurope."
+    },
+    {
+      "id": "g_documented_exceptions",
+      "label": "Documented exceptions",
+      "parent": null,
+      "x": 0,
+      "y": 272,
+      "width": 172,
+      "height": 152,
+      "padding": 34,
+      "border": "#8c959f",
+      "background": "rgba(140,149,159,0.08)",
+      "dashed": true,
+      "annotation": "Overrides and tier exceptions recorded in assessment.yaml. This skill records them and cannot verify an approval."
+    }
+  ],
+  "decisions": [],
+  "view": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "updatedAt": "2026-01-01T00:00:00.000Z"
+}

@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-11-04",
+  "reference": "https://learn.microsoft.com/en-us/azure/reliability/regions-multiregion-support",
+  "note": "A lookup aid, never the source of truth: stage 5 re-reads the row and the article from Learn on every run. Older than 90 days is a starting point only.",
+  "types": {
+    "microsoft.apimanagement/service": [
+      { "service": "Azure API Management", "tab": "built-in", "article": "reliability-api-management" }
+    ],
+    "microsoft.app/containerapps": [
+      { "service": "Azure Container Apps", "tab": "none", "article": "reliability-container-apps", "customAnchor": true }
+    ],
+    "microsoft.app/managedenvironments": [
+      { "service": "Azure Container Apps", "tab": "none", "article": "reliability-container-apps", "customAnchor": true }
+    ],
+    "microsoft.appconfiguration/configurationstores": [
+      { "service": "Azure App Configuration", "tab": "built-in", "article": "reliability-app-configuration" }
+    ],
+    "microsoft.automation/automationaccounts": [
+      { "service": "Azure Automation", "tab": "none", "article": "reliability-automation" }
+    ],
+    "microsoft.avs/privateclouds": [
+      { "service": "Azure VMware Solution", "tab": "none", "article": "reliability-vmware-solution", "customAnchor": true }
+    ],
+    "microsoft.batch/batchaccounts": [
+      { "service": "Azure Batch", "tab": "none", "article": "reliability-batch" }
+    ],
+    "microsoft.cache/redis": [
+      { "service": "Azure Cache for Redis", "tab": "not-listed", "article": null, "when": "classic Azure Cache for Redis; not on the reference page when verified, so search Learn" }
+    ],
+    "microsoft.cache/redisenterprise": [
+      { "service": "Azure Managed Redis", "tab": "built-in", "article": "reliability-managed-redis" }
+    ],
+    "microsoft.cdn/profiles": [
+      { "service": "Azure Front Door", "tab": "built-in", "article": null, "when": "Front Door Standard or Premium; a nonregional service" }
+    ],
+    "microsoft.compute/disks": [
+      { "service": "Azure Disk Storage", "tab": "none", "article": "reliability-storage-disk", "customAnchor": true }
+    ],
+    "microsoft.compute/galleries": [
+      { "service": "Azure Compute Gallery", "tab": "built-in", "article": "/en-us/azure/virtual-machines/azure-compute-gallery" }
+    ],
+    "microsoft.compute/virtualmachines": [
+      { "service": "Azure Virtual Machines", "tab": "built-in", "article": "reliability-virtual-machines" }
+    ],
+    "microsoft.compute/virtualmachinescalesets": [
+      { "service": "Azure Virtual Machine Scale Sets", "tab": "none", "article": "reliability-virtual-machine-scale-sets", "customAnchor": true }
+    ],
+    "microsoft.containerinstance/containergroups": [
+      { "service": "Azure Container Instances", "tab": "none", "article": "reliability-container-instances", "customAnchor": true }
+    ],
+    "microsoft.containerregistry/registries": [
+      { "service": "Azure Container Registry", "tab": "built-in", "article": "reliability-container-registry" }
+    ],
+    "microsoft.containerservice/managedclusters": [
+      { "service": "Azure Kubernetes Service (AKS)", "tab": "built-in", "article": "reliability-aks" }
+    ],
+    "microsoft.dashboard/grafana": [
+      { "service": "Azure Managed Grafana", "tab": "none", "article": "reliability-managed-grafana", "customAnchor": true }
+    ],
+    "microsoft.databricks/workspaces": [
+      { "service": "Azure Databricks", "tab": "built-in", "article": "reliability-databricks" }
+    ],
+    "microsoft.datafactory/factories": [
+      { "service": "Azure Data Factory", "tab": "built-in", "article": "reliability-data-factory", "customAnchor": true }
+    ],
+    "microsoft.dbformysql/flexibleservers": [
+      { "service": "Azure Database for MySQL", "tab": "built-in", "article": "reliability-database-mysql" }
+    ],
+    "microsoft.dbforpostgresql/flexibleservers": [
+      { "service": "Azure Database for PostgreSQL", "tab": "built-in", "article": "reliability-database-postgresql" }
+    ],
+    "microsoft.devices/iothubs": [
+      { "service": "Azure IoT Hub", "tab": "built-in", "article": "reliability-iot-hub", "customAnchor": true }
+    ],
+    "microsoft.documentdb/databaseaccounts": [
+      { "service": "Azure Cosmos DB", "tab": "built-in", "article": "reliability-cosmos-db" }
+    ],
+    "microsoft.elasticsan/elasticsans": [
+      { "service": "Azure Elastic SAN", "tab": "none", "article": "reliability-elastic-san", "customAnchor": true }
+    ],
+    "microsoft.eventgrid/domains": [
+      { "service": "Azure Event Grid", "tab": "built-in", "article": "reliability-event-grid", "customAnchor": true }
+    ],
+    "microsoft.eventgrid/namespaces": [
+      { "service": "Azure Event Grid", "tab": "built-in", "article": "reliability-event-grid", "customAnchor": true }
+    ],
+    "microsoft.eventgrid/systemtopics": [
+      { "service": "Azure Event Grid", "tab": "built-in", "article": "reliability-event-grid", "customAnchor": true }
+    ],
+    "microsoft.eventgrid/topics": [
+      { "service": "Azure Event Grid", "tab": "built-in", "article": "reliability-event-grid", "customAnchor": true }
+    ],
+    "microsoft.eventhub/namespaces": [
+      { "service": "Azure Event Hubs", "tab": "built-in", "article": "reliability-event-hubs" }
+    ],
+    "microsoft.fabric/capacities": [
+      { "service": "Microsoft Fabric", "tab": "built-in", "article": "/en-us/fabric/security/reliability-fabric" }
+    ],
+    "microsoft.insights/components": [
+      { "service": "Application Insights", "tab": "not-listed", "article": null, "when": "not on the reference page when verified; its data lives in a Log Analytics workspace, so also read the Azure Monitor Logs row" }
+    ],
+    "microsoft.keyvault/managedhsms": [
+      { "service": "Azure Key Vault Managed HSM", "tab": "built-in", "article": "reliability-managed-hsm" }
+    ],
+    "microsoft.keyvault/vaults": [
+      { "service": "Azure Key Vault", "tab": "built-in", "article": "reliability-key-vault", "customAnchor": true }
+    ],
+    "microsoft.kusto/clusters": [
+      { "service": "Azure Data Explorer", "tab": "none", "article": "reliability-data-explorer", "customAnchor": true }
+    ],
+    "microsoft.logic/workflows": [
+      { "service": "Azure Logic Apps", "tab": "none", "article": "reliability-logic-apps", "customAnchor": true }
+    ],
+    "microsoft.netapp/netappaccounts": [
+      { "service": "Azure NetApp Files", "tab": "built-in", "article": "reliability-netapp-files" }
+    ],
+    "microsoft.network/applicationgateways": [
+      { "service": "Azure Application Gateway", "tab": "none", "article": "reliability-application-gateway-v2", "customAnchor": true }
+    ],
+    "microsoft.network/azurefirewalls": [
+      { "service": "Azure Firewall", "tab": "none", "article": "reliability-firewall", "customAnchor": true }
+    ],
+    "microsoft.network/bastionhosts": [
+      { "service": "Azure Bastion", "tab": "none", "article": "reliability-bastion" }
+    ],
+    "microsoft.network/ddosprotectionplans": [
+      { "service": "Azure DDoS Protection", "tab": "built-in", "article": "reliability-ddos-protection" }
+    ],
+    "microsoft.network/dnsresolvers": [
+      { "service": "Azure DNS Private Resolver", "tab": "none", "article": "reliability-dns-private-resolver" }
+    ],
+    "microsoft.network/dnszones": [
+      { "service": "Azure DNS public zones", "tab": "built-in", "article": "reliability-dns-public" }
+    ],
+    "microsoft.network/expressroutecircuits": [
+      { "service": "Azure ExpressRoute", "tab": "none", "article": "reliability-virtual-network-gateway?pivots=expressroute", "customAnchor": true }
+    ],
+    "microsoft.network/frontdoors": [
+      { "service": "Azure Front Door", "tab": "built-in", "article": null, "when": "classic Front Door; a nonregional service" }
+    ],
+    "microsoft.network/loadbalancers": [
+      { "service": "Azure Load Balancer", "tab": "built-in", "article": "reliability-load-balancer" }
+    ],
+    "microsoft.network/natgateways": [
+      { "service": "Azure NAT Gateway", "tab": "none", "article": "reliability-nat-gateway" }
+    ],
+    "microsoft.network/networkmanagers": [
+      { "service": "Azure Virtual Network Manager", "tab": "built-in", "article": "reliability-virtual-network-manager" }
+    ],
+    "microsoft.network/privatednszones": [
+      { "service": "Azure DNS private zones", "tab": "built-in", "article": "reliability-dns-private" }
+    ],
+    "microsoft.network/privatelinkservices": [
+      { "service": "Azure Private Link service", "tab": "none", "article": "reliability-private-link-service", "customAnchor": true }
+    ],
+    "microsoft.network/trafficmanagerprofiles": [
+      { "service": "Azure Traffic Manager", "tab": "built-in", "article": "reliability-traffic-manager" }
+    ],
+    "microsoft.network/virtualnetworkgateways": [
+      { "service": "Azure VPN Gateway", "tab": "none", "article": "reliability-virtual-network-gateway?pivots=vpn", "customAnchor": true, "when": "gateway type Vpn" },
+      { "service": "Azure ExpressRoute", "tab": "none", "article": "reliability-virtual-network-gateway?pivots=expressroute", "customAnchor": true, "when": "gateway type ExpressRoute" }
+    ],
+    "microsoft.network/virtualnetworks": [
+      { "service": "Azure Virtual Network", "tab": "none", "article": "reliability-virtual-network", "customAnchor": true }
+    ],
+    "microsoft.notificationhubs/namespaces": [
+      { "service": "Azure Notification Hubs", "tab": "built-in", "article": "reliability-notification-hubs" }
+    ],
+    "microsoft.operationalinsights/workspaces": [
+      { "service": "Azure Monitor Logs", "tab": "built-in", "article": "reliability-monitor-logs" }
+    ],
+    "microsoft.recoveryservices/vaults": [
+      { "service": "Azure Backup", "tab": "built-in", "article": "reliability-backup", "when": "backup items in the vault" },
+      { "service": "Azure Site Recovery", "tab": "built-in", "article": "reliability-site-recovery", "when": "replicated items in the vault" }
+    ],
+    "microsoft.search/searchservices": [
+      { "service": "Azure AI Search", "tab": "none", "article": "reliability-ai-search", "customAnchor": true }
+    ],
+    "microsoft.servicebus/namespaces": [
+      { "service": "Azure Service Bus", "tab": "built-in", "article": "reliability-service-bus" }
+    ],
+    "microsoft.servicenetworking/trafficcontrollers": [
+      { "service": "Azure Application Gateway for Containers", "tab": "none", "article": "reliability-application-gateway-containers", "customAnchor": true }
+    ],
+    "microsoft.signalrservice/signalr": [
+      { "service": "Azure SignalR Service", "tab": "built-in", "article": "reliability-signalr" }
+    ],
+    "microsoft.signalrservice/webpubsub": [
+      { "service": "Azure Web PubSub", "tab": "built-in", "article": "reliability-web-pubsub" }
+    ],
+    "microsoft.sql/managedinstances": [
+      { "service": "Azure SQL Managed Instance", "tab": "built-in", "article": "reliability-sql-managed-instance" }
+    ],
+    "microsoft.sql/servers": [
+      { "service": "Azure SQL Database", "tab": "built-in", "article": "reliability-sql-database" }
+    ],
+    "microsoft.sql/servers/databases": [
+      { "service": "Azure SQL Database", "tab": "built-in", "article": "reliability-sql-database" }
+    ],
+    "microsoft.sql/servers/elasticpools": [
+      { "service": "Azure SQL Database", "tab": "built-in", "article": "reliability-sql-database" }
+    ],
+    "microsoft.storage/storageaccounts": [
+      { "service": "Azure Blob Storage", "tab": "built-in", "article": "reliability-storage-blob", "when": "containers and blobs" },
+      { "service": "Azure Files", "tab": "built-in", "article": "reliability-storage-files", "customAnchor": true, "when": "file shares" },
+      { "service": "Azure Queue Storage", "tab": "built-in", "article": "reliability-storage-queue", "customAnchor": true, "when": "queues" },
+      { "service": "Azure Table Storage", "tab": "built-in", "article": "reliability-storage-table", "customAnchor": true, "when": "tables" },
+      { "service": "Azure Data Lake Storage Gen2 (hierarchical namespaces)", "tab": "built-in", "article": "reliability-storage-blob", "when": "hierarchical namespace enabled" }
+    ],
+    "microsoft.streamanalytics/streamingjobs": [
+      { "service": "Azure Stream Analytics", "tab": "none", "article": "reliability-stream-analytics", "customAnchor": true }
+    ],
+    "microsoft.web/hostingenvironments": [
+      { "service": "Azure App Service Environment", "tab": "built-in", "article": "reliability-app-service-environment" }
+    ],
+    "microsoft.web/serverfarms": [
+      { "service": "Azure App Service", "tab": "built-in", "article": "reliability-app-service", "when": "the plan behind App Service apps; analyze it with the apps it hosts" }
+    ],
+    "microsoft.web/sites": [
+      { "service": "Azure App Service", "tab": "built-in", "article": "reliability-app-service", "when": "kind does not contain functionapp or workflowapp" },
+      { "service": "Azure Functions", "tab": "none", "article": "reliability-functions", "customAnchor": true, "when": "kind contains functionapp" },
+      { "service": "Azure Logic Apps", "tab": "none", "article": "reliability-logic-apps", "customAnchor": true, "when": "kind contains workflowapp (Logic Apps Standard)" }
+    ]
+  }
+}

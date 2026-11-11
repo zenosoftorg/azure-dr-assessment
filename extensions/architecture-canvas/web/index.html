@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Architecture canvas</title>
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="toolbar">
+  <div class="tb-group">
+    <input id="title" class="title-input" placeholder="Untitled architecture" spellcheck="false" />
+  </div>
+
+  <div class="tb-group">
+    <button id="btn-add" class="btn primary" title="Add a component (A)">＋ Component</button>
+    <button id="btn-connect" class="btn" title="Draw a connection (C)">↔ Connect</button>
+    <button id="btn-group" class="btn" title="Group selected nodes (G)">▢ Subgraph</button>
+    <button id="btn-tidy" class="btn" title="Auto-layout: arrange by flow, no overlaps (T)">✦ Tidy</button>
+  </div>
+
+  <div class="tb-group">
+    <button id="btn-zoom-out" class="btn icon" title="Zoom out">−</button>
+    <span id="zoom-label" class="zoom-label">100%</span>
+    <button id="btn-zoom-in" class="btn icon" title="Zoom in">＋</button>
+    <button id="btn-fit" class="btn" title="Fit to content (F)">Fit</button>
+  </div>
+
+  <div class="tb-group right">
+    <span id="status" class="status"></span>
+    <button id="btn-import" class="btn" title="Import a drawing (.arch.json, or an .svg exported from here)">Import</button>
+    <button id="btn-export-json" class="btn" title="Export the full drawing as JSON">JSON</button>
+    <button id="btn-export" class="btn" title="Export as SVG — picture for slides, with the full drawing embedded">SVG</button>
+    <button id="btn-export-vsdx" class="btn" title="Export as Visio (.vsdx) — native shapes with glued connectors">Visio</button>
+    <button id="btn-save" class="btn primary" title="Save (Ctrl+S)">Save</button>
+    <input id="file-import" type="file" accept=".json,.svg,application/json,image/svg+xml" hidden />
+  </div>
+</header>
+
+<main class="stage">
+  <div id="viewport" class="viewport">
+    <svg id="scene" xmlns="http://www.w3.org/2000/svg">
+      <defs id="defs"></defs>
+      <g id="world">
+        <g id="layer-groups"></g>
+        <g id="layer-edges"></g>
+        <g id="layer-nodes"></g>
+        <g id="layer-overlay"></g>
+      </g>
+    </svg>
+    <div id="hover-card" class="hover-card" hidden></div>
+    <div id="hint" class="hint"></div>
+  </div>
+
+  <aside id="inspector" class="inspector" hidden>
+    <div class="insp-head">
+      <span id="insp-title">Inspector</span>
+      <button id="insp-close" class="btn icon ghost" title="Close">✕</button>
+    </div>
+    <div id="insp-body" class="insp-body"></div>
+  </aside>
+</main>
+
+<!-- Icon picker -->
+<div id="picker" class="modal" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <input id="picker-search" class="search" placeholder="Search 1,200+ Microsoft icons…" spellcheck="false" />
+      <button id="picker-close" class="btn icon ghost">✕</button>
+    </div>
+    <div id="picker-filters" class="filters"></div>
+    <div id="picker-grid" class="grid"></div>
+    <div class="modal-foot"><span id="picker-count" class="muted"></span></div>
+  </div>
+</div>
+
+<!-- Suggestions / clarifying questions -->
+<div id="assist" class="assist" hidden>
+  <div class="assist-head">
+    <strong id="assist-title">Suggestions</strong>
+    <button id="assist-close" class="btn icon ghost">✕</button>
+  </div>
+  <div id="assist-body" class="assist-body"></div>
+</div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

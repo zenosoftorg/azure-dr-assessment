@@ -1,0 +1,14 @@
+{
+    "name": "azure-dr-assessment",
+    "version": "3.0.0",
+    "private": true,
+    "description": "Azure disaster recovery assessment skill: rebuilds a workload architecture from an Azure Resource Inventory or a read-only live query, then designs and walks through its DR.",
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "scripts": {
+        "test": "node tests/run-all.mjs",
+        "lint:patterns": "node skills/azure-dr-assessment/scripts/lint-patterns.mjs",
+        "lint:playbooks": "node skills/azure-dr-assessment/scripts/lint-playbooks.mjs"
+    }
+}

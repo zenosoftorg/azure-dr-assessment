@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "kind": "proposed-dr",
+  "id": "checkout-proposed-dr",
+  "title": "checkout · proposed DR (westeurope to swedencentral)",
+  "direction": "LR",
+  "groups": [
+    { "key": "onprem", "label": "On-prem", "parent": null, "style": "onprem", "evidence": [], "annotation": "The company DNS is authoritative for the application's names." },
+    { "key": "primary", "label": "Primary · westeurope", "parent": null, "style": "primary", "evidence": ["F-0001"], "annotation": "" },
+    { "key": "dr", "label": "DR · swedencentral", "parent": null, "style": "dr", "evidence": [], "annotation": "Not a paired region of westeurope." }
+  ],
+  "nodes": [
+    { "key": "dns", "label": "On-prem DNS", "sublabel": "authoritative record", "armType": null, "icon": null, "group": "onprem", "evidence": [], "decisions": ["traffic-dns"], "annotation": "" },
+    { "key": "web", "label": "web-prod", "sublabel": "App Service · P1v3", "armType": "microsoft.web/sites", "icon": null, "group": "primary", "evidence": ["F-0001"], "decisions": [], "annotation": "" },
+    { "key": "db", "label": "orders-db", "sublabel": "SQL Database · S3", "armType": "microsoft.sql/servers/databases", "icon": null, "group": "primary", "evidence": ["F-0002"], "decisions": ["data-replication.relational"], "annotation": "" },
+    { "key": "web-dr", "label": "web-dr", "sublabel": "App Service · P1v3 (warm)", "armType": "microsoft.web/sites", "icon": null, "group": "dr", "evidence": ["F-0001"], "decisions": ["compute"], "annotation": "Same plan and size as the primary." },
+    { "key": "db-dr", "label": "orders-db replica", "sublabel": "SQL Database · S3", "armType": "microsoft.sql/servers/databases", "icon": null, "group": "dr", "evidence": ["R-0001", "D-0001"], "decisions": ["data-replication.relational"], "annotation": "" },
+    { "key": "vault-dr", "label": "kv-dr", "sublabel": "Key Vault · own vault", "armType": "microsoft.keyvault/vaults", "icon": null, "group": "dr", "evidence": ["R-0002", "D-0001", "F-0004"], "decisions": ["secrets-keys"], "annotation": "Secrets are copied by the release pipeline." }
+  ],
+  "edges": [
+    { "from": "dns", "to": "web", "label": "Record to primary", "kind": "traffic", "evidence": [], "decisions": ["traffic-dns"], "mechanism": "the on-prem record points to the primary entry point", "arrow": "forward", "annotation": "" },
+    { "from": "dns", "to": "web-dr", "label": "Change on-prem DNS record", "kind": "failover", "evidence": [], "decisions": ["traffic-dns"], "mechanism": "on-prem record change at failover; the TTL wait counts toward RTO", "arrow": "forward", "annotation": "" },
+    { "from": "web", "to": "db", "label": "SQL", "kind": "dependency", "evidence": ["F-0003"], "decisions": [], "mechanism": "application connection", "arrow": "forward", "annotation": "" },
+    { "from": "db", "to": "db-dr", "label": "Async geo-replication", "kind": "replication", "evidence": ["R-0001", "D-0001"], "decisions": ["data-replication.relational"], "mechanism": "SQL Database active geo-replication", "arrow": "forward", "annotation": "" },
+    { "from": "web-dr", "to": "db-dr", "label": "SQL after failover", "kind": "dependency", "evidence": ["F-0003"], "decisions": [], "mechanism": "application connection after failover", "arrow": "forward", "annotation": "" }
+  ]
+}

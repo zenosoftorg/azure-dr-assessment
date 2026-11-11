@@ -1,0 +1,2 @@
+# LF in every checkout (GC-04): several tests match "\n" in the pattern files, the stage references and the templates.
+* text=auto eol=lf
